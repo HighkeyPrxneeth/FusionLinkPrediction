@@ -1,0 +1,23 @@
+protocol: static_transductive_80_5_5_10_v1
+datasets: [Cora, CiteSeer, PubMed]
+run_ids: [0, 1, 2, 3, 4]
+selection_fraction: 0.05
+fusion_fraction: 0.05
+test_fraction: 0.10
+negative_ratio: 1
+hidden_dim: 32
+latent_dim: 16
+learning_rate: 0.01
+epochs: 200
+selection_every: 10
+kl_weight: inverse_nodes
+logistic_c: 1.0
+deepwalk_dim: 128
+deepwalk_walks: 10
+deepwalk_length: 80
+deepwalk_window: 10
+deepwalk_epochs: 1
+deepwalk_objective: hierarchical_softmax
+device: auto
+torch_threads: 4
+base_seed: 20261009

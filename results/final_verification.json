@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "verified_at_utc": "2026-10-09T14:00:44.375574+00:00",
+  "completed_runs": 15,
+  "source_hash": "016e2bf1dfdf4c1c843998b189e1dc3538cb65c1dedcc91eda350bc694972edc",
+  "protocol_tests_passed": 12,
+  "demo_pairs_checked": 107,
+  "browser_checks_passed": [
+    "initial results",
+    "dataset switching",
+    "run switching",
+    "negative example",
+    "six contributions",
+    "subgroup counts",
+    "method tab",
+    "mobile layout",
+    "PDF route",
+    "invalid input",
+    "no browser errors"
+  ],
+  "report_pages": 27,
+  "report_sha256": "fa0adb021b99eb0ffc630e22559fcf927c44b1a486342acbd9d57a8078c6aaab",
+  "literature_reviews": 10,
+  "live_demo": {
+    "url": "http://127.0.0.1:8768",
+    "summary_and_report_passed": true
+  }
+}

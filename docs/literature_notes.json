@@ -1,0 +1,92 @@
+[
+  {
+    "key": "modularity",
+    "method": "Modularity-informed message passing and a community-preserving regularizer extend deterministic and variational graph autoencoders. Louvain supplies a prior partition; both linear and GCN encoders are studied.",
+    "datasets": "Cora, CiteSeer and PubMed, with and without attributes; Cora-Large; political Blogs; a 100,000-node stochastic block model; and the industrial Deezer-Album graph.",
+    "metrics": "AUC and AP for missing-edge recovery; adjusted mutual information and adjusted Rand index for communities.",
+    "advantage": "Joint-task experiments and encoder/loss ablations show that explicitly preserving communities can improve embeddings without abandoning link prediction.",
+    "limitation": "The authors report sensitivity to hyperparameters and smaller community gains on attributed citation graphs. A Louvain prior may carry its own resolution bias. This modifies training, whereas our fusion operates after encoding.",
+    "evidence": "Sections 3, 4.1 and 4.2; Tables 3 and 6-8; limitation discussion. Author manuscript archived locally."
+  },
+  {
+    "key": "fair_benchmark",
+    "method": "FURL benchmarks thirteen unsupervised representation learners under fixed-time random hyperparameter search. It separates validation-tuned classification, first-run-tuned link prediction, and classification tuned through link prediction.",
+    "datasets": "Cora, CiteSeer, PubMed, Flickr, BlogCatalog, Chameleon, Film and Squirrel.",
+    "metrics": "ROC AUC and AP for link prediction; micro and macro F1 for classification. Link prediction uses balanced sampled pairs, embedding dot products and ten evaluation runs after tuning.",
+    "advantage": "Equal tuning budgets and multiple downstream tasks expose how evaluation choices alter model rankings.",
+    "limitation": "Fixed time is hardware dependent, and an overall rank aggregates different tasks. Published CiteSeer/PubMed edge counts differ from our canonical PyG graphs. We use a fixed configuration and distinct checkpoint/fusion partitions instead of reproducing its search budget.",
+    "evidence": "Sections 2.2, 3.2 and 4; Tables 2 and link-prediction results. Published PDF archived; DOI verified."
+  },
+  {
+    "key": "gaepnas",
+    "method": "GAEPNAS augments the graph with an attribute-similarity K-nearest-neighbor graph and reconstructs both adjacency and attribute similarity. Binary attributes use Jaccard similarity; PubMed TF-IDF attributes use cosine similarity.",
+    "datasets": "Cora, CiteSeer and PubMed citation networks.",
+    "metrics": "ROC AUC and AP for link prediction, plus clustering measures in a separate experiment. The link protocol is 85/5/10 with balanced validation/test negatives and ten runs.",
+    "advantage": "Preserving attribute relationships through the encoder and decoder provides information beyond observed adjacency. The paper includes parameter analysis.",
+    "limitation": "The authors' results are not uniformly best: GASN slightly exceeds it on PubMed. Dataset-specific K, mixing weights and training schedules complicate replication; PubMed uses 500 epochs. Our 80/5/5/10 protocol and sampled loss differ, so its table is context rather than a controlled comparator.",
+    "evidence": "Sections 3, 4.1 and 4.3; Tables 2-3. Full XML from Europe PMC archived."
+  },
+  {
+    "key": "dynamic_gcn",
+    "method": "GCN_MA enriches structural information with node aggregation, degree and clustering, then combines GCN representations with LSTM-based evolution of weights and multi-head attention to capture global and local changes.",
+    "datasets": "CollegeMsg, MOOC actions, Bitcoin OTC, Email-Eu-core-temporal, LastFM and Wikipedia interaction datasets.",
+    "metrics": "The paper labels its measures AUC and AP and reports component ablations. Its AP discussion gives a top-L precision equation, which differs from our threshold-integrated average precision.",
+    "advantage": "Combining structural features with temporal modeling addresses information omitted by a single static neighborhood.",
+    "limitation": "The authors limit the study to homogeneous discrete dynamic networks. Temporal snapshots and the metric-definition ambiguity prevent direct comparison with our static benchmark. This is relevant as a future extension, not an implemented baseline.",
+    "evidence": "Definitions and methods; Results and analysis; Tables 1-4 and Evaluation index subsection."
+  },
+  {
+    "key": "high_frequency",
+    "method": "EdgeConvHiF learns edge representations by combining high- and low-frequency node information with edge convolution and representation normalization.",
+    "datasets": "Cora, CiteSeer and PubMed. The paper states largest-connected-component processing but lists full-size node counts; its edge counts differ from our PyG canonical graphs.",
+    "metrics": "AUC and AUPR over ten runs under a 70/20/10 split; 256 hidden/output channels and 5,000 epochs.",
+    "advantage": "Edge-focused representations preserve differences between nodes that neighborhood smoothing can remove; normalization aims to stabilize learning.",
+    "limitation": "Table 3 does not show uniform superiority: PubMed GCN AUC exceeds EdgeConvHiF. Baseline numbers are reused from an earlier paper. The text's standard-error label and displayed dispersion formula differ, and its recall formula is mistyped. These reporting issues make numerical cross-paper comparisons especially fragile.",
+    "evidence": "Experiments and discussion; Tables 2-4; equations 19-20 and Evaluation indicator."
+  },
+  {
+    "key": "sequential_stacking",
+    "method": "Sequential stacking feeds 41 static structural predictors from consecutive snapshots into a supervised ensemble, including a random-forest stacking model. It distinguishes partially observed from completely unobserved target layers.",
+    "datasets": "Nineteen real temporal networks across domains, plus temporal stochastic block models with community and edge persistence controls.",
+    "metrics": "AUC is the main comparison measure; precision-recall evidence is also reported in supplementary analysis. The partially observed setting uses repeated cross-validation.",
+    "advantage": "Historical structural predictors provide an understandable alternative to expensive engineered temporal features, and ensemble variants combine complementary methods.",
+    "limitation": "Temporal history is essential and forty-one features can be costly. Synthetic near-oracle behavior does not establish universal performance on social systems. Our six-feature static logistic fusion tests a smaller related mechanism without claiming temporal forecasting.",
+    "evidence": "Results; Sampling dyads and supervised-learning Methods; Figure 1 and real-network comparisons."
+  },
+  {
+    "key": "se4lp",
+    "method": "SE4LP samples local enclosing subgraphs, embeds them with a three-layer GIN, and jointly learns a link classifier and contrastive representations using augmented subgraphs.",
+    "datasets": "Cora, CiteSeer, PubMed, Facebook page-page mutual likes and GitHub. The Facebook identity differs from an ego-Facebook friendship network.",
+    "metrics": "AUC and AP. The full text describes sampled candidate pairs and dataset-dependent sampling percentages, with 8:1:1 labeled splits.",
+    "advantage": "A pair-centered subgraph captures local structural information that a node dot-product decoder may miss; contrastive supervision supplies another learning signal.",
+    "limitation": "Subgraph extraction and augmented examples add memory and computation. The evaluation and graph exposure differ between its own approach and some baselines, so reported superiority cannot be imported into our protocol. Our model is transductive and simpler; it does not demonstrate SE4LP's inductive capability.",
+    "evidence": "Methodology and Experiments; dataset/sampling descriptions; Tables 2-3. Full publisher HTML archived."
+  },
+  {
+    "key": "mcogcn",
+    "method": "MCoGCN propagates low- and high-order motif embeddings, fuses them through a compact attention mechanism, and alternates optimization with embedding refresh.",
+    "datasets": "Twitch-DE, Facebook, GitHub and Pokec. Seven motifs are used on the first three graphs; one is used on larger Pokec to control cost.",
+    "metrics": "Recall@20, NDCG@20, AUC and MRR; the paper averages five experiments and includes seed robustness and module ablations.",
+    "advantage": "Motifs describe relationships richer than pairwise adjacency. Scale-aware motif selection makes a large social-graph experiment feasible.",
+    "limitation": "The authors explicitly trade structural richness for cost on Pokec. Their weak-link study samples 100 negative links and compares average scores; this is not the same as subgroup AUC/AP on all our test candidates. GAT exceeds it on Twitch in a reported comparison, so gains are dataset dependent.",
+    "evidence": "Experiment: Metrics and Motif extraction; Overall performance, Weak link and Ablation study subsections."
+  },
+  {
+    "key": "tagnn",
+    "method": "TAGNN combines local pair-subgraph representations and topology-aware attention. Learned encodings of common neighbors, Jaccard, Adamic-Adar, shortest-path distance and path counts modify structural attention.",
+    "datasets": "Cora, CiteSeer, PubMed, ogbl-ppa, ogbl-citation2 and ogbl-vessel.",
+    "metrics": "AUC on citation/vessel tasks, Hits@100 on ogbl-ppa and MRR on ogbl-citation2. The text describes official OGB or classic splits, which must be distinguished by dataset.",
+    "advantage": "Pair topology supplements node-centered features; its attribute-removal experiment investigates whether neighbor attributes can be distracting.",
+    "limitation": "Subgraph and path computation add complexity. Different candidate sets, graph counts and metrics prevent direct ranking against our small sampled-pair experiment. Our fixed post-encoder logistic fusion is less expressive and easier to audit; it is not an implementation of TAGNN.",
+    "evidence": "Structural Encoding Fusion; Experiments datasets/baselines/results and neighborhood-feature ablation."
+  },
+  {
+    "key": "lpgnn",
+    "method": "LP-GNN combines centrality and classical similarity information with learned graph representations. Its displayed LP-GAE decoder adds a parameterized structural prior to an embedding dot product.",
+    "datasets": "The main results cover celegans-dir, netscience, euroroad, dolphins, infect-dublin, web-edu and enron-only; the dataset section says ten networks while the displayed comparison covers seven.",
+    "metrics": "AUROC and AUPR with 80% observed links and 20% held out in the experiment description.",
+    "advantage": "The mathematical structural prior makes the combination of influence and similarity inspectable and directly relevant to our fusion idea.",
+    "limitation": "The text and algorithm differ in split detail, and the displayed algorithm normalizes similarity separately within splits. The paper acknowledges that its component study is not a fully isolated ablation. We fit preprocessing on fusion pairs only and claim a controlled coursework extension of VGAE, not the first embedding/heuristic hybrid.",
+    "evidence": "Sections IV.F, V.A, Algorithm 1, VI and Tables 7-10. Published author-hosted PDF archived."
+  }
+]

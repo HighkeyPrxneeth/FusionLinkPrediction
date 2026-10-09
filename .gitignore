@@ -1,0 +1,12 @@
+.conda/
+.cache/
+.vscode/
+data/
+artifacts/
+artifacts_pilot/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+tmp/
+output/
+docs/sources/

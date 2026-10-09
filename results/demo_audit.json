@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "runs": 15,
+  "pairs_checked": 107,
+  "checks": [
+    "hidden edge absent",
+    "fusion decomposition equals saved prediction",
+    "common-neighbor count",
+    "finite JSON",
+    "bounded neighborhood display"
+  ]
+}

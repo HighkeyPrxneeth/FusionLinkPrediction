@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "browser": "Chromium",
+  "datasets": 3,
+  "checks": [
+    "initial results",
+    "dataset switching",
+    "run switching",
+    "negative example",
+    "six contributions",
+    "subgroup counts",
+    "method tab",
+    "mobile layout",
+    "PDF route",
+    "invalid input",
+    "no browser errors"
+  ]
+}

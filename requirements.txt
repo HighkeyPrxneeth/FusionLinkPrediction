@@ -1,0 +1,15 @@
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.3
+scikit-learn==1.6.1
+matplotlib==3.10.1
+networkx==3.4.2
+torch-geometric==2.6.1
+gensim==4.3.3
+numba==0.61.2
+PyYAML==6.0.2
+pytest==8.3.5
+requests==2.32.3
+reportlab==4.4.0
+pypdf==5.4.0
+chardet==5.2.0

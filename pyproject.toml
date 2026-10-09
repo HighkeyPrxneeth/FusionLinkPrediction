@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sna-heuristic-fusion"
+version = "1.0.0"
+description = "Reproducible heuristic and VGAE link prediction study"
+requires-python = ">=3.11"
+
+[project.scripts]
+sna-project = "sna_project.run:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
